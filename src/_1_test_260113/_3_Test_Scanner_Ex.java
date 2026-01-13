@@ -16,6 +16,9 @@ public class _3_Test_Scanner_Ex {
         // 원 반지름 구해보기.
         System.out.println("원의 넓이 : " + (3.14 * radius * radius));
 
+        // 버퍼의 내용 비우기.
+        scanner.nextLine();
+
         // 문자열 입력 받아서 출력 해보기.
         System.out.println("============================");
         System.out.println("Scanner 로 문자열 입력 받기");
@@ -23,6 +26,9 @@ public class _3_Test_Scanner_Ex {
         // 스캐너가 읽은 문자열을 담기 위해서, 변수를 선언함.
         String name = scanner.nextLine();
         System.out.println("당신의 이름은 : " + name + "입니다.~~");
+
+        // 자원 반납,
+        scanner.close();
 
 
     }
