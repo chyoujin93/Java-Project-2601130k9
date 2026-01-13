@@ -12,7 +12,5 @@ public class Ex1 {
         int result = x * y;
         System.out.println("계산 결과 : " +  result);
 
-        // 자원반납
-        scanner.close();
     }
 }
