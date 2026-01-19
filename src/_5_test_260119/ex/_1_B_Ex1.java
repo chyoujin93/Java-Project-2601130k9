@@ -9,4 +9,9 @@ public class _1_B_Ex1 extends _1_A_Ex1 {
 //        super();
         System.out.println("_1_B_Ex1 (자식)클래스 생성자 ");
     }
+
+    @Override
+    public void show() {
+        System.out.println("자식 show 기능입니다.");
+    }
 }
