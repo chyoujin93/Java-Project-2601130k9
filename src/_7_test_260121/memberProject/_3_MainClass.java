@@ -158,11 +158,17 @@ public class _3_MainClass {
 
                     // 회원 정보가 들어 있는 배열을 전체 순회,
                     // 등록된 회원 숫자 만큼만 반복, count 라는 변수를 활용.
-                    for (int i = 0; i < count; i++) {
+
+                    // 260121_업그레이드_배열에서ArrayList_변경, 순서5
+//                    for (int i = 0; i < count; i++) {
+                    for (_3_MemberBase member : members) {
                         // 임시 메모리 상에 저장된 회원의 이메일과, 패스워드 확인하는 절차.
                         // 저장된 회원 한명씩 꺼내서, member 에 담아두고,
                         // 입력된 이메일, 패스워드와,,  불러온  이메일, 패스워드 일치 여부 확인?
-                        _3_MemberBase member = members[i];
+
+                        // 260121_업그레이드_배열에서ArrayList_변경, 순서5-2
+//                        _3_MemberBase member = members[i];
+
                         // 주의사항,
                         // 문자열 비교시에는 사용하는 메서드
                         // 문자열1.equals(문자열2) => 같으면, true, 다르면, false
