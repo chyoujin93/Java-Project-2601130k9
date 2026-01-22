@@ -221,6 +221,7 @@ public class _3_MainClass_복제2_ArrayList_버전 {
 //    1) 저장하는 기능의 메서드 만들기, 정적(static)
     // 준비물 : 1) 메모리상에 저장된 멤버들의 배열 members , 2) 가입된 인원수 count
 
+
     // 260121_업그레이드_배열에서ArrayList_변경, 순서3-5
 //    public static void saveMembers(_3_MemberBase[] members, int count){
     public static void saveMembers(List<_3_MemberBase> members){
