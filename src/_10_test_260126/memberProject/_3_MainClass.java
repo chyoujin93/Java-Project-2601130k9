@@ -28,7 +28,8 @@ public class _3_MainClass extends JFrame {
 
     // 260123_화면_스윙_변경__순서2-3
     // 버튼 정의,
-    private JButton btnJoin, btnList, btnLoginLogout, btnEdit, btnSearch, btnExit;
+    // 260126_화면버전_기능추가_회원삭제_순서1
+    private JButton btnJoin, btnList, btnLoginLogout, btnEdit, btnSearch, btnExit, btnDelelte;
     //private JButton btnList;
 
     public static void main(String[] args) {
@@ -108,7 +109,9 @@ public class _3_MainClass extends JFrame {
         btnLoginLogout = new JButton("3 로그인"); //초깃값, 로그인을 하면, 로그 아웃으로 보일 예정.
         btnEdit = new JButton("4 회원수정");
         btnSearch = new JButton("5 회원검색");
-        btnExit = new JButton("6 종료");
+        // 260126_화면버전_기능추가_회원삭제_순서2
+        btnDelelte = new JButton("6 회원탈퇴");
+        btnExit = new JButton("7 종료");
         // 삭제 기능은 완성 후, 실습으로 제시.
 //            btnJoin = new JButton("1 회원가입");
 
@@ -129,6 +132,12 @@ public class _3_MainClass extends JFrame {
         // 260126_화면버전_기능추가_회원검색_순서1
         btnSearch.addActionListener(new ActionHandler());
 
+        // 260126_화면버전_기능추가_회원삭제_순서3
+        btnDelelte.addActionListener(new ActionHandler());
+
+        // 260126_화면버전_기능추가_종료_순서1
+        btnExit.addActionListener(new ActionHandler());
+
         // 260123_화면_스윙_변경__순서5-7
         // 버튼을 패널에 붙이기 작업.
         buttonPanel.add(btnJoin);
@@ -136,7 +145,10 @@ public class _3_MainClass extends JFrame {
         buttonPanel.add(btnLoginLogout);
         buttonPanel.add(btnEdit);
         buttonPanel.add(btnSearch);
+        // 260126_화면버전_기능추가_회원삭제_순서3-2
+        buttonPanel.add(btnDelelte);
         buttonPanel.add(btnExit);
+
 
         // 260123_화면_스윙_변경__순서5-8
         // 버튼 패널, 프레임 하단에 배치
@@ -181,8 +193,12 @@ public class _3_MainClass extends JFrame {
             } else if (source == btnSearch) {
                 // 260126_화면버전_기능추가_회원검색_순서2
                 handleSearch();
+            } else if (source == btnDelelte) {
+                // 260126_화면버전_기능추가_회원삭제_순서4
+                handleDelete();
             } else if (source == btnExit) {
-//                handleExit();
+                // 260126_화면버전_기능추가_종료_순서2
+                System.exit(0);
             }
         } //actionPerformed 닫기
     } //ActionHandler 닫기
@@ -482,8 +498,56 @@ public class _3_MainClass extends JFrame {
             }
         }
         // 회원이 없을 경우.
-        if(!isFound) {
+        if (!isFound) {
             printLog("검색 결과가 없습니다. ");
+        }
+
+    }
+
+    // 260126_화면버전_기능추가_회원삭제_순서5
+    // 회원탈퇴.
+    private void handleDelete() {
+        // 1. 로그인 체크
+        if(loggedInMember == null) { // 로그인이 안된 경우,
+            // 알림창 띄우고
+            JOptionPane.showMessageDialog(this, "로그인 후 본인 탈퇴만 가능합니다.");
+            // 해당 기능 종료
+            return;
+        }
+
+        // 2. 삭제 재확인 다이얼로그창 , 화면 구현.
+        int response = JOptionPane.showConfirmDialog(
+                this,
+                "정말로 회원 탈퇴를 하시겠습니까? \n 모든 정보가 삭제됩니다.",
+                "회원 탈퇴 확인",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        // yes , no 따라서 로직 구성.
+        if( response == JOptionPane.YES_OPTION) {
+            // 3 비밀번호 재확인 후, 진행하기.
+            String inputPassword = JOptionPane.showInputDialog(this, "비밀번호를 입력하세요:");
+
+            // 입력 비밀번호, 멤버 비밀번호가 일치한다면,
+            if(inputPassword != null && inputPassword.equals(loggedInMember.getPassword())) {
+                // 4 삭제 로직 진행.
+                String targetEmail = loggedInMember.getEmail();
+                members.remove(targetEmail);// 맵에서 삭제 처리.
+
+                // 5 파일 업데이트 , 메모리 상에서 변경된 내용 -> 파일에 업데이트
+                saveMembers(members);
+
+                //  6 상태 초기화 (로그아웃처리)
+                printLog(">>> 회원탈퇴완료: " + targetEmail);
+                loggedInMember = null;
+                updateButtonState();
+
+                // 7 알림창
+                JOptionPane.showMessageDialog(this, "탈퇴 처리가 완료되었습니다. 이용해 주셔서 감사합니다.");
+            } else if (inputPassword != null) {
+                JOptionPane.showMessageDialog(this,"비밀번호가 일치하지 않습니다. ");
+            }
         }
 
     }
