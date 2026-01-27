@@ -7,7 +7,15 @@ public class _3_NormalMember extends _3_MemberBase implements _3_Joinable {
 //    public _3_NormalMember(String name, String email, int age) {
 //        super(name,email,age);
 //    }
-    public _3_NormalMember(String name, String email, String password ,int age) {
+
+    // 기본 생성자 추가.
+
+
+    public _3_NormalMember() {
+        super();
+    }
+
+    public _3_NormalMember(String name, String email, String password , int age) {
         super(name,email,password,age);
     }
 

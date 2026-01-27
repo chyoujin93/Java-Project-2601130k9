@@ -21,6 +21,10 @@ public abstract class _3_MemberBase {
         this.age = age;
     }
 
+    public _3_MemberBase() {
+
+    }
+
     public abstract void showInfo(); // 정보 출력용 추상 메서드
     // 260120_실습4_풀이, 순서5, 이메일, 패스워드 조회 하는 기능 추가. getter
     // 생성시, 우클릭 -> 생성 -> Getter -> 각각, 하나씩, email, password 선택.
