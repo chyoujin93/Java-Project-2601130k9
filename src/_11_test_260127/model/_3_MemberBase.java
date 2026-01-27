@@ -1,4 +1,4 @@
-package _11_test_260127.memberProject.memberProject;
+package _11_test_260127.model;
 
 public abstract class _3_MemberBase {
     // 현재 여기 접근 지정은, 상속 받은 자식 클래스는 접근이 가능하지만,

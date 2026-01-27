@@ -1,4 +1,6 @@
-package _11_test_260127.memberProject.memberProject;
+package _11_test_260127.model;
+
+import _11_test_260127.memberProject.memberProject._3_Joinable;
 
 public class _3_NormalMember extends _3_MemberBase implements _3_Joinable {
     // 매개변수가 3개인 생성자

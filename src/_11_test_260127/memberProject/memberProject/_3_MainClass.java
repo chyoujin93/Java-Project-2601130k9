@@ -1,24 +1,20 @@
 package _11_test_260127.memberProject.memberProject;
 
+import _11_test_260127.model._3_MemberBase;
+import _11_test_260127.model._3_NormalMember;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
 // 260123_화면_스윙_변경__순서1
 // 해당 클래스가, JFrame 관련 그리기 도구를 사용하기 위해서, 상속.
 public class _3_MainClass extends JFrame {
 
-    private static final String FILE_NAME = "members.txt";
 
-    // 260123_화면_스윙_변경__순서2
-    // 전역으로 사용할 멤버들 지정, 변수 지정.
-    private Map<String, _3_MemberBase> members = new HashMap<>();
-    // 로그인한 멤버 상태.
-    private _3_MemberBase loggedInMember = null;
 
     // 260123_화면_스윙_변경__순서2-2
     // GUI 화면 구성 요소, 전역,
